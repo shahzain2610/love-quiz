@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Quiz ❤️</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6e6;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff6f61;
+            font-size: 2.5em;
+        }
+        .question {
+            margin: 20px 0;
+            font-size: 1.5em;
+            color: #333;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        #yes {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #no {
+            background-color: #f44336;
+            color: white;
+        }
+        .sticker {
+            font-size: 3em;
+            position: absolute;
+            animation: float 5s infinite ease-in-out;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="quiz">
+        <!-- Question 1 -->
+        <div id="question1" class="question">
+            <h1>Do You Love Me? ❤️</h1>
+            <button id="yes1" onclick="nextQuestion('question1', 'question2', 'Yay! I love you too! 😍')">Yes</button>
+            <button id="no1" onclick="moveButton('no1')">No</button>
+        </div>
+
+        <!-- Question 2 -->
+        <div id="question2" class="question hidden">
+            <h1>Will You Marry Me? 💍</h1>
+            <button id="yes2" onclick="nextQuestion('question2', 'question3', 'You made me the happiest person! 🥰')">Yes</button>
+            <button id="no2" onclick="moveButton('no2')">No</button>
+        </div>
+
+        <!-- Question 3 -->
+        <div id="question3" class="question hidden">
+            <h1>Do You Think We Are Soulmates? 🌟</h1>
+            <button id="yes3" onclick="nextQuestion('question3', 'question4', 'I knew it! We are meant to be! 💖')">Yes</button>
+            <button id="no3" onclick="moveButton('no3')">No</button>
+        </div>
+
+        <!-- Question 4 -->
+        <div id="question4" class="question hidden">
+            <h1>Will You Stay With Me Forever? 🌈</h1>
+            <button id="yes4" onclick="showFinalMessage('Forever and always! 💑')">Yes</button>
+            <button id="no4" onclick="moveButton('no4')">No</button>
+        </div>
+    </div>
+
+    <!-- Final Message -->
+    <div id="finalMessage" class="hidden">
+        <h1>Thank You for Making Me So Happy! 🥰</h1>
+        <p id="message"></p>
+        <div class="sticker">💑</div>
+        <div class="sticker" style="left: 20%; top: 30%;">💖</div>
+        <div class="sticker" style="left: 70%; top: 50%;">🎉</div>
+        <div class="sticker" style="left: 50%; top: 80%;">😘</div>
+    </div>
+
+    <!-- Fun Stickers -->
+    <div class="sticker" style="left: 10%; top: 10%;">😍</div>
+    <div class="sticker" style="left: 80%; top: 20%;">💕</div>
+    <div class="sticker" style="left: 30%; top: 70%;">💌</div>
+    <div class="sticker" style="left: 60%; top: 40%;">💘</div>
+
+    <script>
+        // Function to move the "No" button
+        function moveButton(buttonId) {
+            const button = document.getElementById(buttonId);
+            const x = Math.random() * (window.innerWidth - button.offsetWidth);
+            const y = Math.random() * (window.innerHeight - button.offsetHeight);
+            button.style.position = 'absolute';
+            button.style.left = `${x}px`;
+            button.style.top = `${y}px`;
+        }
+
+        // Function to go to the next question
+        function nextQuestion(currentId, nextId, message) {
+            document.getElementById(currentId).classList.add('hidden');
+            document.getElementById(nextId).classList.remove('hidden');
+            alert(message);
+        }
+
+        // Function to show the final message
+        function showFinalMessage(message) {
+            document.getElementById('quiz').classList.add('hidden');
+            document.getElementById('finalMessage').classList.remove('hidden');
+            document.getElementById('message').innerText = message;
+        }
+    </script>
+</body>
+</html>
